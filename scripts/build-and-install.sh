@@ -7,11 +7,10 @@ LOG_DIR="$ROOT_DIR/build/logs"
 mkdir -p "$LOG_DIR"
 LOG_FILE="$LOG_DIR/build-$(date +%Y%m%d-%H%M%S).log"
 
-# Homebrew python@3.14 is broken against system libexpat on this host; prefer Apple python3.
-export PATH="/usr/bin:/opt/homebrew/opt/coreutils/libexec/gnubin:/opt/homebrew/bin:$PATH"
+# shellcheck source=build-env.sh
+source "$(dirname "$0")/build-env.sh"
 
 echo "Logging to $LOG_FILE"
-echo "Using python3: $(which python3) ($(python3 --version))"
 
 cd "$ROOT_DIR"
 arch="${1:-arm64}"
